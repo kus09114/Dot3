@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 24e6fdce9f61fba48b68536b62130637
+guid: 15fe72d9d4a94b4488997687ac629439
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,11 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: TTTogether
   fontNames:
   - TTTogether
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 70a3d50002b01454b9076ca6a5015682, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

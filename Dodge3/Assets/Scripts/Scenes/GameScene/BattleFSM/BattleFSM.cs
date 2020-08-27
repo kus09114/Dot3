@@ -66,12 +66,12 @@ public class BattleFSM
 	private CState m_Game = new CGameState();
 	private CState m_Result = new CResultState();
 
-	public void Initialize(DelegateFunc ready, DelegateFunc wave, DelegateFunc game, DelegateFunc result)
+	public void Initialize(DelegateFunc kReady, DelegateFunc kWave, DelegateFunc kGame, DelegateFunc kResult)
 	{
-		m_Ready.Initialize(ready);
-		m_Wave.Initialize(wave);
-		m_Game.Initialize(game);
-		m_Result.Initialize(result);
+		m_Ready.Initialize(kReady);
+		m_Wave.Initialize(kWave);
+		m_Game.Initialize(kGame);
+		m_Result.Initialize(kResult);
 	}
 
 	// 상태 변화 셋팅
