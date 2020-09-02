@@ -11,7 +11,7 @@ public class Turrets : MonoBehaviour
 	[SerializeField] Transform m_FireParent = null;
 
 	[SerializeField] float m_fDelayTime = 1f;
-	[SerializeField] float m_fBulletSpeed = 0;
+	private float m_fBulletSpeed = 0;
 
 	AudioSource m_EffectSound;
 
@@ -24,6 +24,10 @@ public class Turrets : MonoBehaviour
 
 	public void Initialize(Transform target)
 	{
+		GameInfo kGameinfo = GameMng.Inst.m_GameInfo;
+		AssetStage kStage = AssetMng.Inst.GetAssetStage(kGameinfo.m_nStage);
+		m_fBulletSpeed = kStage.m_fBulletSpeed;
+		Debug.Log(m_fBulletSpeed);
 		SetIsFire(true);
 		m_Target = target;
 		CreateBulletObject();
@@ -69,5 +73,15 @@ public class Turrets : MonoBehaviour
 	public void SetIsFire(bool bStart)
 	{
 		m_bStart = bStart;
+	}
+
+	public void Stop()
+	{
+		SetIsFire(false);
+	}
+	public void ReStart()
+	{
+		SetIsFire(true);
+		CreateBulletObject();
 	}
 }

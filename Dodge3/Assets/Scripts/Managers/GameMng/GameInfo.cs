@@ -32,7 +32,7 @@ public class GameInfo
 
 	public void Initialize_Item()
 	{
-		for(int i =0; i < AssetMng.Inst.m_AssetItems.Count; i++)
+		for (int i = 0; i < AssetMng.Inst.m_AssetItems.Count; i++)
 		{
 			AssetItem kAss = AssetMng.Inst.m_AssetItems[i];
 			ItemInfo kInfo = new ItemInfo();
@@ -53,12 +53,7 @@ public class GameInfo
 
 	public void AddDamage()
 	{
-		//m_ActorInfo.AddDamage(this.bulletDamage);
-	}
-
-	public bool IsPlayerDie()
-	{
-		return m_ActorInfo.IsDie();
+		m_ActorInfo.AddDamage(m_AseetStage.m_nBulletAttack);
 	}
 
 	public void OnUpdate(float fElasedTime)
@@ -70,22 +65,26 @@ public class GameInfo
 		return m_bSuccess;
 	}
 
-	public int GetCurrentPlayerHP()
+	public float GetCurrentPlayerHP()
 	{
-		if (m_ActorInfo.m_MaxHP == 0)
-			return 0;
-
-		int curHp = m_ActorInfo.m_HP / m_ActorInfo.m_MaxHP;
-		return curHp;
+		float curHP = (float)m_ActorInfo.m_HP;
+		int maxHP = m_ActorInfo.CalculateMaxHP();
+		float fScore = curHP / maxHP;
+		return fScore;
 	}
 	public float GetCurrentKeepTime()
 	{
 		float curtime = m_AseetStage.m_fStageKeepTime - m_fDurationTime;
 		if (curtime <= 0)
+		{
 			curtime = 0;
+			m_bSuccess = true;
+		}
 		return curtime;
 	}
 
+	// 아이템을 먹었을 때의 결과 처리
+	// 리턴값 : 2번 아이템의 처리 결과 유지시간 정보
 	public ItemInfo ActionItem(int nItemId)
 	{
 		ItemInfo kInfo = GetItemInfo(nItemId);

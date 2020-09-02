@@ -19,7 +19,15 @@ public class ActorInfo
 	{
 		m_HP -= nDamage;
 		if (m_HP <= 0)
+		{
+			GameInfo kGameInfo = GameMng.Inst.m_GameInfo;
 			m_HP = 0;
+			kGameInfo.m_bSuccess = false;
+		}
+	}
+	public void AddHP(int nHP)
+	{
+		m_HP += nHP;
 	}
 
 	public int CalculateAddHP()
@@ -30,16 +38,6 @@ public class ActorInfo
 
 	public int CalculateMaxHP()
 	{
-		return m_MaxHP + m_ExtraHP;
-	}
-
-	public bool IsDie()
-	{
-		bool die = false;
-		if (m_HP <= 0)
-			die = true;
-		else
-			die = false;
-		return die;
+		return m_MaxHP;
 	}
 }

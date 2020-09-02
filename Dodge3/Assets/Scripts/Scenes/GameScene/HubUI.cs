@@ -14,8 +14,7 @@ public class HubUI : MonoBehaviour
 
 	public void Initialize()
 	{
-		//m_ResultSuccesDlg.Initialize();
-		//m_ResultFailedDlg.Initialize();
+		
 	}
 
 	public void Initialize_ReadyState()
@@ -25,7 +24,20 @@ public class HubUI : MonoBehaviour
 
 	public void Initialize_GameState()
 	{
-		//m_HPBarUI.Initialize();
-		//m_KeepTimeBarUI.Initialize();
+		m_HPBarUI.Initialize();
+		m_KeepTimeBarUI.Initialize();
+	}
+
+	public void Initialize_ResultState()
+	{
+		GameInfo kGameInfo = GameMng.Inst.m_GameInfo;
+		if (kGameInfo.IsSucces())
+		{
+			m_ResultSuccesDlg.Initialize();
+		}
+		else
+		{
+			m_ResultFailedDlg.Initialize();
+		}
 	}
 }

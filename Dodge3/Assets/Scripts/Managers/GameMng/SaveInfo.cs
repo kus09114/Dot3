@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using System;
 public class SStage
 {
 	public int m_nStage = 0;
@@ -19,7 +19,7 @@ public class SaveInfo : MonoBehaviour
 {
 	public List<SStage> m_Stages = new List<SStage>();
 
-	public int m_LastStage = 0;
+	public int m_LastStage = 1;
 	public int m_AccumulateScore = 0;
 	public int m_HighestScore = 0;
 
@@ -47,25 +47,42 @@ public class SaveInfo : MonoBehaviour
 	public void LoadFile()
 	{
 		m_Stages.Clear();
-		FileStream fs = new FileStream("stage.data", FileMode.Open, FileAccess.Read);
-		BinaryReader br = new BinaryReader(fs);
-
-		m_LastStage = br.ReadInt32();
-		m_AccumulateScore = br.ReadInt32();
-		m_HighestScore = br.ReadInt32();
-
-		int count = br.ReadInt32();
-		for (int i = 0; i < count; i++)
+		try
 		{
-			int stage = br.ReadInt32();
-			int score = br.ReadInt32();
 
-			SStage kStudent = new SStage(stage, score);
-			m_Stages.Add(kStudent);
+			FileStream fs = new FileStream("stage.data", FileMode.Open, FileAccess.Read);
+			BinaryReader br = new BinaryReader(fs);
+
+			m_LastStage = br.ReadInt32();
+			m_AccumulateScore = br.ReadInt32();
+			m_HighestScore = br.ReadInt32();
+
+			int count = br.ReadInt32();
+			for (int i = 0; i < count; i++)
+			{
+				int stage = br.ReadInt32();
+				int score = br.ReadInt32();
+
+				SStage kStudent = new SStage(stage, score);
+				m_Stages.Add(kStudent);
+			}
+
+			fs.Close();
+			br.Close();
 		}
+		catch (Exception e)
+		{
+			Debug.Log(e.ToString());
+		}
+	}
 
-		fs.Close();
-		br.Close();
+	public void SetStage(int nStage)
+	{
+		m_LastStage = nStage;
+	}
+	public void SetLastStage(int nStage)
+	{
+		m_LastStage = nStage;
 	}
 
 	public void SetHighestScore(int score)

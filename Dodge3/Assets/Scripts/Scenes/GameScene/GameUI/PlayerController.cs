@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 			OnMyCollision(other);
 	}
 
-	public void Playeroving(bool bMove)
+	public void PlayerMoving(bool bMove)
 	{
 		m_bMove = bMove;
 	}

@@ -37,8 +37,6 @@ public class GameScene : MonoBehaviour
 		}
 	}
 
-
-
 	void Update()
 	{
 		if (m_BattleFSM != null)
@@ -60,7 +58,6 @@ public class GameScene : MonoBehaviour
 	public void Callback_ReadyEnter()
 	{
 		Initialize_ReadyState();
-		Debug.Log("State : Ready");
 	}
 	public void Callback_WaveEnter()
 	{
@@ -69,11 +66,10 @@ public class GameScene : MonoBehaviour
 	public void Callback_GameEnter()
 	{
 		Initialize_GameState();
-		Debug.Log("State : Game");
 	}
 	public void Callback_ResultEnter()
 	{
-		Debug.Log("State : Result");
+		Initialize_ResultState();
 	}
 
 	private void Initialize_ReadyState()
@@ -87,6 +83,11 @@ public class GameScene : MonoBehaviour
 	{
 		m_HubUI.Initialize_GameState();
 		m_GameUI.Initialize_GameState();
+	}
+	private void Initialize_ResultState()
+	{
+		m_HubUI.Initialize_ResultState();
+		m_GameUI.Initialize_ResultState();
 	}
 
 	private void OnApplicationQuit()

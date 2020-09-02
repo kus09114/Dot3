@@ -119,6 +119,6 @@ public class AssetMng
 
 	public int GetAssetItemCount()
 	{
-		return 0;
+		return m_AssetItems.Count;
 	}
 }

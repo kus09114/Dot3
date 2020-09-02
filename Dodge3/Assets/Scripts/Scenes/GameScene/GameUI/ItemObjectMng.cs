@@ -56,6 +56,7 @@ public class ItemObjectMng : MonoBehaviour
 		AssetItem kAssItem = AssetMng.Inst.GetAssetItem(id);
 
 		rAssId = id;
+		Debug.LogFormat("ItmeType = {0}", kAssItem.m_nItemType);
 		return kAssItem.m_nItemType;
 	}
 
@@ -72,6 +73,11 @@ public class ItemObjectMng : MonoBehaviour
 		{
 			m_Items[i].Show(false);
 		}
+	}
+
+	public void HideItem(GameObject gameObject)
+	{
+		gameObject.SetActive(false);
 	}
 
 	public void SetIsCreateItem(bool bCreate)
@@ -103,6 +109,6 @@ public class ItemObjectMng : MonoBehaviour
 		float x = Random.Range(vMin.x, vMax.x);
 		float z = Random.Range(vMin.z, vMax.z);
 
-		return new Vector3(x, 0, z);
+		return new Vector3(x, 0.5f, z);
 	}
 }
